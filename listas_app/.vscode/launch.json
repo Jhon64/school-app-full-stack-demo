@@ -1,0 +1,85 @@
+{
+   // Use IntelliSense para saber los atributos posibles.
+   // Mantenga el puntero para ver las descripciones de los existentes atributos.
+   // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "name": "listas_app",
+         "request": "launch",
+         "type": "dart"
+      },
+      {
+         "name": "listas_app (profile mode)",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "profile"
+      },
+      {
+         "name": "listas_app (release mode)",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "release"
+      },
+      {
+         "name": "generic_components",
+         "cwd": "packages\\generic_components",
+         "request": "launch",
+         "type": "dart"
+      },
+      {
+         "name": "generic_components (profile mode)",
+         "cwd": "packages\\generic_components",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "profile"
+      },
+      {
+         "name": "generic_components (release mode)",
+         "cwd": "packages\\generic_components",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "release"
+      },
+      {
+         "name": "http2",
+         "cwd": "packages\\http2",
+         "request": "launch",
+         "type": "dart"
+      },
+      {
+         "name": "http2 (profile mode)",
+         "cwd": "packages\\http2",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "profile"
+      },
+      {
+         "name": "http2 (release mode)",
+         "cwd": "packages\\http2",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "release"
+      },
+      {
+         "name": "utils",
+         "cwd": "packages\\utils",
+         "request": "launch",
+         "type": "dart"
+      },
+      {
+         "name": "utils (profile mode)",
+         "cwd": "packages\\utils",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "profile"
+      },
+      {
+         "name": "utils (release mode)",
+         "cwd": "packages\\utils",
+         "request": "launch",
+         "type": "dart",
+         "flutterMode": "release"
+      }
+   ]
+}
