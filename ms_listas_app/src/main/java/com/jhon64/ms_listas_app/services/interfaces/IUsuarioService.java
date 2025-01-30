@@ -3,7 +3,9 @@ package com.jhon64.ms_listas_app.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.jhon64.ms_listas_app.dto.request.usuario.LoginDTO;
 import com.jhon64.ms_listas_app.dto.response.http.ResponseDTO;
+import com.jhon64.ms_listas_app.dto.response.usuario.LoginResponseDTO;
 import com.jhon64.ms_listas_app.models.Usuario;
 
 public interface IUsuarioService {
@@ -16,4 +18,8 @@ public interface IUsuarioService {
    ResponseDTO<Usuario> Update(Usuario usuario);
 
    ResponseDTO<Integer> Delete(Integer id);
+
+   ResponseDTO<LoginResponseDTO> login(LoginDTO login);
+
+   
 }

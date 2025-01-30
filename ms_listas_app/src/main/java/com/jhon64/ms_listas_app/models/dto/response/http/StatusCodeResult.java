@@ -1,9 +1,10 @@
 package com.jhon64.ms_listas_app.dto.response.http;
 
 public enum StatusCodeResult {
-   InternalServer(-1),
-   BadRequest(0),
-   Success(1);
+   InternalServer(500),
+   unauthorized(401),//401
+   BadRequest(400),
+   Success(200);
 
    public final Integer Value;
 

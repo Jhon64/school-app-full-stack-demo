@@ -18,11 +18,11 @@ public class ResponseAPI<T> {
       } else {
          this.status = status;
       }
-
       this.data = data;
    }
 
    public ResponseEntity<T> result() {
-      return ResponseEntity.status(this.status).body(this.data);
+      ResponseAPI<T> response=new ResponseAPI<T>(this.status,this.data);
+      return (ResponseEntity<T>) ResponseEntity.status(this.status).body(response);
    }
 }

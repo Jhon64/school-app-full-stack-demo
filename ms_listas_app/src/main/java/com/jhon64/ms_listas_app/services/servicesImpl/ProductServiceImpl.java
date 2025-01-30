@@ -1,11 +1,11 @@
-package com.jhon64.ms_listas_app.servicesImpl;
+package com.jhon64.ms_listas_app.services.servicesImpl;
 
-import com.jhon64.ms_listas_app.dto.response.http.ResponseDTO;
-import com.jhon64.ms_listas_app.dto.response.http.ResponseAPI;
-import com.jhon64.ms_listas_app.dto.response.http.StatusCodeResult;
-import com.jhon64.ms_listas_app.models.Product;
+import com.jhon64.ms_listas_app.models.dto.response.http.ResponseDTO;
+import com.jhon64.ms_listas_app.models.dto.response.http.StatusCodeResult;
+import com.jhon64.ms_listas_app.models.entities.Product;
 import com.jhon64.ms_listas_app.repository.ProductRepository;
-import com.jhon64.ms_listas_app.services.IProductService;
+
+import com.jhon64.ms_listas_app.services.interfaces.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3,8 +3,11 @@ package com.jhon64.ms_listas_app.models;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 public class BaseModel {
    @Column(name = "estado", nullable = false)
    private int estado = 1;
