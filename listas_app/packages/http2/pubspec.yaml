@@ -16,6 +16,8 @@ dependencies:
     path: ../utils
   generic_components:
     path: ../generic_components
+  logger: ^2.5.0
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:

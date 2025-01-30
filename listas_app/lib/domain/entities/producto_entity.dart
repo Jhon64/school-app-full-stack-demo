@@ -2,9 +2,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:utils/toasted/toasted.dart';
 import 'package:generic_components/generic_components.dart';
 
-
-
-class Product implements IDynamicFormMethods,IFunctionsGeneric{
+class Product implements IDynamicFormMethods, IFunctionsGeneric {
   int? productID;
   String? nombre;
   String? descripcion;
@@ -34,7 +32,7 @@ class Product implements IDynamicFormMethods,IFunctionsGeneric{
         setPrecio = double.parse(precio.toString());
       }
     } catch (ex) {
-      Toasted.Error(message: ex.toString()).show();
+      Toasted.error(message: ex.toString()).show();
     }
 
     Product reg = Product();
@@ -83,5 +81,4 @@ class Product implements IDynamicFormMethods,IFunctionsGeneric{
   String toString() {
     return 'ProductID: $productID Nombre: $nombre  Descripcion: $descripcion  Precio: $precio';
   }
-
 }

@@ -21,13 +21,40 @@ class Toasted {
       this.textColor,
       this.fontSize});
 
-  Toasted.Error(
+  Toasted.error(
       {this.message,
       this.toastLength,
       this.gravity,
       this.timeInSecForIosWeb,
       this.fontSize})
       : backgroundColor = Colors.red,
+        textColor = Colors.white;
+
+  Toasted.success(
+      {this.message,
+      this.toastLength,
+      this.gravity,
+      this.timeInSecForIosWeb,
+      this.fontSize})
+      : backgroundColor = Colors.green,
+        textColor = Colors.white;
+
+  Toasted.info(
+      {this.message,
+      this.toastLength,
+      this.gravity,
+      this.timeInSecForIosWeb,
+      this.fontSize})
+      : backgroundColor = Colors.blue,
+        textColor = Colors.white;
+
+  Toasted.warning(
+      {this.message,
+      this.toastLength,
+      this.gravity,
+      this.timeInSecForIosWeb,
+      this.fontSize})
+      : backgroundColor = Colors.orange,
         textColor = Colors.white;
 
   void show() {

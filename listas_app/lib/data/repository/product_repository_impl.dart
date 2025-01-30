@@ -39,7 +39,7 @@ class ProductRepositoryImpl implements ProductRepository {
         statusCode: 200, message: "producto eliminado", data: 0);
 
     if (id == 0) {
-      Toasted.Error(message: "sin información para eliminar").show();
+      Toasted.error(message: "sin información para eliminar").show();
       result.statusCode = 400;
       result.message = "sin información para eliminar";
     } else {
@@ -74,7 +74,7 @@ class ProductRepositoryImpl implements ProductRepository {
     var dataJson = form.toJson();
 
     if (dataJson.isEmpty) {
-      Toasted.Error(message: "sin información para guardar").show();
+      Toasted.error(message: "sin información para guardar").show();
       result.statusCode = 400;
       result.message = "sin información para guardar";
     } else {
@@ -103,7 +103,7 @@ class ProductRepositoryImpl implements ProductRepository {
     var dataJson = form.toJson();
 
     if (dataJson.isEmpty) {
-      Toasted.Error(message: "sin información para guardar").show();
+      Toasted.error(message: "sin información para guardar").show();
       result.statusCode = 400;
       result.message = "sin información para guardar";
     } else {

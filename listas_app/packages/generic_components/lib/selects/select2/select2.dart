@@ -3,11 +3,16 @@ import '../../forms/form_dynamic/entities/generic_item_form.dart';
 import '../../forms/form_dynamic/widgets/InputDecorationForm.dart';
 
 class Select2<T> extends StatefulWidget {
+
+  //{id:1,nombre:'ssss',descripcion:'asdadasd',...}
   @override
   State<Select2> createState() => _Select2State();
-  late String keyValue;
-  late String keyLabel;
-  late String label;
+  //opciones
+  late String keyValue;//id
+  //opciones
+  late String keyLabel;//nombre
+  //input
+  late String label;//
   late String? hint;
   Map<String, GenericItemForm>? formSave;
   late String? formKey;
@@ -24,6 +29,7 @@ class Select2<T> extends StatefulWidget {
       required this.keyValue,
       this.defaultValue,
       required this.label,
+        this.onSelected,
       this.formSave,
       this.formKey,
       this.hint,

@@ -285,7 +285,7 @@ class _DynamicFormState<T extends IDynamicFormMethods>
                       // ScaffoldMessenger.of(context).showSnackBar(
                       //   const SnackBar(content: Text('Validar campos requeridos')),
                       // );
-                      Toasted.Error(message: 'Validar campos requeridos')
+                      Toasted.error(message: 'Validar campos requeridos')
                           .show();
                     } else {
                       if (getForm != null) {

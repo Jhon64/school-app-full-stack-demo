@@ -30,17 +30,23 @@ class ResponseApiData<T> {
 }
 
 class ResponseApiDTO<T> {
-  String? status;
+  int? status;
   ResponseApiData? data;
-  ResponseApiDTO({this.status, this.data});
+  String? message;
+  ResponseApiDTO({this.status, this.data, this.message});
 
   factory ResponseApiDTO.fromJson(Map<String, dynamic> json) {
     ResponseApiDTO<T> reg = ResponseApiDTO<T>();
-    var status = json['status'];
-    var data = json['data'];
+    int status = json['data']['statusCode'];
+    String message = json['message'] ?? '';
+    dynamic data = json['data'];
 
     if (status != null) reg.status = status;
-    if (data != null) reg.data = ResponseApiData.fromJson(data);
+    if (status != null) reg.message = message;
+    // if (data != null) reg.data = ResponseApiData.fromJson(json);
+    if (data != null)
+      reg.data =
+          ResponseApiData(message: message, statusCode: status, data: data);
     return reg;
   }
 

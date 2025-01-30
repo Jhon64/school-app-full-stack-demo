@@ -1,5 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
+
+
+    <!-- Permisos de Bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    
+    <!-- Requerido para Android 12+ -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Para la búsqueda de dispositivos en segundo plano en Android 10+ -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+<!-- legacy for Android 9 or lower -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:usesCleartextTraffic="true"   
+    android:requestLegacyExternalStorage="true"
         android:label="listas_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -30,6 +48,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+             <!-- <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/> -->
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

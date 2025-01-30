@@ -1,8 +1,15 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:generic_components/modals/notificacion/notificacion_dialog.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listas_app/common/loading_spinner.dart';
+import 'package:listas_app/data/service/usuario_service_impl.dart';
+import 'package:listas_app/domain/entities/security/request/login_request.dart';
+import 'package:listas_app/security/provider/auth_provider.dart';
+import 'package:utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +20,45 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   Map<String, String> formSave = {};
+  final loginService = UsuarioServiceImpl();
+
+  Future<void> handleOnLogin() async {
+    try {
+      onLoadingSpinner(true, context);
+
+      final resultLogin = await loginService.login(LoginRequest(
+          password: formSave["password"], username: formSave["username"]));
+
+      if (mounted) {
+        onLoadingSpinner(false, context);
+      }
+      if (resultLogin.statusCode == 200) {
+        Toasted.success(message: "usuario autenticado correctamente").show();
+
+        if (resultLogin.data != null) {
+          final logged = await AuthProvider().logged(resultLogin.data!);
+          if (logged) {
+            if (mounted) {
+              context.go("/products");
+            }
+          }
+        }
+      } else {
+        Toasted.warning(message: "${resultLogin.message}").show();
+        return;
+      }
+    } catch (e) {
+      if (mounted) {
+        log(e.toString());
+        onLoadingSpinner(false, context);
+        NotificacionDialog(
+                context: context,
+                notificationType: NotificationType.error,
+                subtitle: e.toString())
+            .show();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,8 +190,8 @@ class _LoginPageState extends State<LoginPage> {
                                       //   ),
                                       // ),
                                       child: TextButton.icon(
-                                        onPressed: () =>
-                                            context.go("/products"),
+                                        onPressed: handleOnLogin,
+                                        // context.go("/products"),
                                         label: const Text("Autenticar"),
                                         icon: const Icon(Icons.lock),
                                       ),

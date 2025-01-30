@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listas_app/security/provider/auth_provider.dart';
 import 'package:listas_app/settings/loadConfigureInit.dart';
 import 'package:listas_app/ui/homeScreen.dart';
 import 'package:listas_app/ui/screens/compras/compras_page.dart';
@@ -8,18 +9,25 @@ import 'package:listas_app/ui/screens/login/login_screen.dart';
 import 'package:listas_app/ui/screens/products/product_page.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 /// The route configuration.
 final GoRouter _router = GoRouter(
-  initialLocation: '/login', // Ruta inicial
+  initialLocation: '/', // Ruta inicial
+  // initialLocation: '/products', // Ruta inicial
   routes: <RouteBase>[
-    GoRoute(path: '/login',builder: (BuildContext context,GoRouterState state){
-      return const LoginPage();
-    }),
+    GoRoute(
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginPage();
+        }),
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomePage();
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        return authProvider.isAuthenticated
+            ? const HomePage()
+            : const LoginPage();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -39,15 +47,19 @@ final GoRouter _router = GoRouter(
   ],
 );
 
-
-
 Future<void> main() async {
   loadConfigureInit();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const AppPage());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthProvider()..loadUser()),
+      ],
+      child: const AppPage(),
+    ),
+  );
 }
-
 
 class AppPage extends StatelessWidget {
   const AppPage({super.key});
@@ -60,9 +72,9 @@ class AppPage extends StatelessWidget {
         overlayColor: Colors.grey.withOpacity(0.8),
         overlayWidgetBuilder: (_) {
           //ignored progress for the moment
-          return Center(
+          return const Center(
             child: SpinKitCubeGrid(
-              color: Colors.red,
+              color: Colors.white,
               size: 50.0,
             ),
           );

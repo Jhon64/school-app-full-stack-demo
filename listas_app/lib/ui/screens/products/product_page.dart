@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:listas_app/data/service/product_service_impl.dart';
 import 'package:listas_app/domain/entities/producto_entity.dart';
 import 'package:listas_app/domain/services/product_service.dart';
@@ -8,6 +10,7 @@ import 'package:listas_app/ui/screens/products/widgets/list_products.dart';
 import 'package:listas_app/ui/widgets/confirmation_dialog.dart';
 
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:utils/utils.dart';
 import 'package:generic_components/forms/form_dynamic/entities/generic_item_form.dart';
 import 'package:generic_components/forms/form_dynamic/dynamic_form.dart';
@@ -23,17 +26,59 @@ class _ProductPageState extends State<ProductPage> {
   double _size = 1.0;
   final bool _loadingState = false;
   List<Product> _listProduct = [];
+  List<BluetoothDevice>  devices = [];
+  final Bluetooth _bluetooth = Bluetooth.initialize();
   final ProductService _service = ProductServiceImpl();
   late Product form = Product();
   late Map<String, GenericItemForm> form2 = {};
 
-
   @override
   void initState() {
     super.initState();
-    loadProducts();
+    // loadProducts();
     configItemsForm();
+
     // initializeForm(null);
+  }
+  void _connectToDevice(BluetoothDevice device) async {
+    try{
+    await device.connect();
+    Toasted.success(message:"✅ Conectado a ${device.name} (${device.remoteId})").show();
+
+    }catch(e){
+    Toasted.error(message:"✅ Error al conectar con este dispoitivo ${e.toString()}").show();
+
+    }
+  }
+
+  void initConfigBluetooth() async {
+    setState(() {
+      devices=[];
+    });
+    bool? permiso = await _bluetooth.requestPermissions();
+    if (permiso== true) {
+      Toasted.info(message: "Bluetooth conectado").show();
+      _bluetooth.startScan(null);
+      _bluetooth.getScanResultsSubscription().listen((scanResults){
+        for (ScanResult r in scanResults) {
+          if (!devices.contains(r.device)) {
+            log("dispositivo: ${r.device.advName}" );
+            setState(() {
+              devices.add(r.device);
+            });
+          }
+        }
+      });
+      _bluetooth.getIsScanningSubscription().listen((state){
+        log('el estado del scanneo ${state.toString()}');
+      });
+      // var devices = _bluetooth.getDevices();
+      // var isScanning = _bluetooth.getIsScanning();
+      // log(devices.length.toString());
+      // log(isScanning.toString());
+    } else {
+      Toasted.error(message: "activar Bluetooth ").show();
+    }
   }
 
   Map<String, GenericItemFormOptions> configItemsForm() {
@@ -91,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
     if (loading == null || loading == false) {
       context.loaderOverlay.hide();
     } else {
-        context.loaderOverlay.show();
+      context.loaderOverlay.show();
     }
   }
 
@@ -168,7 +213,6 @@ class _ProductPageState extends State<ProductPage> {
   void handleDelete(Product prod, int index) async {
     print('Eliminado registro ${prod.toString()}');
 
-
     if (prod.toJson().isEmpty) {
       Toasted(message: "No hay datos para enviar").show();
       return;
@@ -229,6 +273,18 @@ class _ProductPageState extends State<ProductPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton.icon(
+                onPressed: () => initConfigBluetooth(),
+                label: const Text("Conectar Bluetooth"),
+                icon: const Icon(Icons.bluetooth),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  foregroundColor: Colors.white,
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+              ElevatedButton.icon(
                 onPressed: () => _showDialog(null, null),
                 label: const Text("Nuevo"),
                 icon: const Icon(Icons.add),
@@ -240,7 +296,19 @@ class _ProductPageState extends State<ProductPage> {
             ],
           ),
           const SizedBox(height: 2),
-          Expanded(child: loadListViewProducts())
+          // Expanded(child: loadListViewProducts())
+          Expanded(child: ListView.builder(
+            itemCount: devices.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(devices[index].name.isNotEmpty
+                    ? devices[index].name
+                    : "Dispositivo Desconocido"),
+                subtitle: Text(devices[index].id.toString()),
+                onTap: () => _connectToDevice(devices[index]),
+              );
+            },
+          ))
           // FutureBuilder(
           //     future: ProductServiceImpl().findAll(),
           //     builder: builderFetchProductsList)

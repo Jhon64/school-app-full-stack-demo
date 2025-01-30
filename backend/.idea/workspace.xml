@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3bd2c7d0-f6c2-4919-8cf6-301fa576f2b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../listas_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../listas_app/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../listas_app/packages/generic_components/lib/selects/select2/interfaces/i_functions_generic.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/packages/generic_components/lib/selects/select2/interfaces/i_functions_generic.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../listas_app/packages/http2/lib/http2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/packages/http2/lib/http2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../listas_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../listas_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../listas_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/MsListasAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/configurations/Swagger2Configuration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/controllers/ProductosController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/controllers/UsuariosController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/dto/LoginDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/dto/response/http/ResponseAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/dto/response/http/ResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/dto/response/http/StatusCodeResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/models/BaseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/models/Permiso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/models/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/models/Roles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/models/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/repository/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/repository/UsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/services/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/services/IUsuarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/servicesImpl/ProductServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/java/com/jhon64/ms_listas_app/servicesImpl/UsuarioServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ms_listas_app/src/test/java/com/jhon64/ms_listas_app/MsListasAppApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2qy4CfIP8wGaGLhpQ1uhjXZjwyT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/LENOVO/Desktop/FLUTTER_DEMOS/listas/backend/ms_eureka_server",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3bd2c7d0-f6c2-4919-8cf6-301fa576f2b4" name="Changes" comment="" />
+      <created>1735621354987</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1735621354987</updated>
+      <workItem from="1735621355972" duration="29000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

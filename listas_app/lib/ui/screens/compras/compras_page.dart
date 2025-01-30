@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:generic_components/generic_components.dart';
+import 'package:listas_app/common/loading_spinner.dart';
 import 'package:listas_app/domain/services/product_service.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:utils/toasted/toasted.dart';
@@ -24,7 +25,6 @@ class _ComprasPageState extends State<ComprasPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadProducts();
   }
@@ -36,23 +36,17 @@ class _ComprasPageState extends State<ComprasPage> {
   }
 
   Future<void> loadProducts() async {
-    onLoading(true);
+    onLoadingSpinner(true, context);
     final response = await _service.findAll();
 
-    if (response.statusCode == 200) {
-      setListProductsState(response.data ?? []);
-      onLoading(false);
-    } else {
-      setListProductsState([]);
-      onLoading(false);
-    }
-  }
-
-  void onLoading(bool? loading) {
-    if (loading == null || loading == false) {
-      context.loaderOverlay.hide();
-    } else {
-      context.loaderOverlay.show();
+    if (mounted) {
+      if (response.statusCode == 200) {
+        setListProductsState(response.data ?? []);
+        onLoadingSpinner(false, context);
+      } else {
+        setListProductsState([]);
+        onLoadingSpinner(false, context);
+      }
     }
   }
 
@@ -62,7 +56,7 @@ class _ComprasPageState extends State<ComprasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Compras'),
+          title: const Text('Compras'),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(vertical: .0, horizontal: 15.0),
@@ -143,7 +137,7 @@ class _ComprasPageState extends State<ComprasPage> {
                 onPressed: () {
                   var isValidForm = _formKey.currentState!.validate();
                   if (!isValidForm) {
-                    Toasted.Error(message: 'Validar campos requeridos').show();
+                    Toasted.error(message: 'Validar campos requeridos').show();
                   } else {
                     print(formSave.toString());
                     Toasted(message: 'Registrando información').show();
