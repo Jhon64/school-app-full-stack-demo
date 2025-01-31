@@ -5,8 +5,8 @@ import 'package:listas_app/domain/services/product_service.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:utils/toasted/toasted.dart';
 
-import '../../../data/service/product_service_impl.dart';
-import '../../../domain/entities/producto_entity.dart';
+import '../../../../data/service/product_service_impl.dart';
+import '../../../../domain/entities/producto_entity.dart';
 import 'package:generic_components/forms/form_dynamic/entities/generic_item_form.dart';
 
 class ComprasPage extends StatefulWidget {

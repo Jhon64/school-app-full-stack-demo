@@ -11,6 +11,8 @@ import 'package:listas_app/domain/entities/security/request/login_request.dart';
 import 'package:listas_app/security/provider/auth_provider.dart';
 import 'package:utils/utils.dart';
 
+import '../../../../security/service/auth_service.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -22,7 +24,23 @@ class _LoginPageState extends State<LoginPage> {
   Map<String, String> formSave = {};
   final loginService = UsuarioServiceImpl();
 
+  @override
+  void initState() {
+    super.initState();
+    checkSessionAuth(mounted, context);
+  }
+
   Future<void> handleOnLogin() async {
+    if (formSave["password"] == null || formSave["username"] == null) {
+      NotificacionDialog(
+              context: context,
+              textBtnCancelar: "Cerrar",
+              notificationType: NotificationType.error,
+              subtitle: "Ingrese usuario y/o password")
+          .show();
+      return;
+    }
+
     try {
       onLoadingSpinner(true, context);
 
@@ -44,10 +62,16 @@ class _LoginPageState extends State<LoginPage> {
           }
         }
       } else {
+        setState(() {
+          formSave = {};
+        });
         Toasted.warning(message: "${resultLogin.message}").show();
         return;
       }
     } catch (e) {
+      setState(() {
+        formSave = {};
+      });
       if (mounted) {
         log(e.toString());
         onLoadingSpinner(false, context);
@@ -125,40 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                                   const Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
-                                    children: [
-                                      // RichText(
-                                      //   text: TextSpan(
-                                      //     text: 'Forgotten password!',
-                                      //     style: TextStyle(
-                                      //       color: Colors.white,
-                                      //     ),
-                                      //     recognizer: TapGestureRecognizer()
-                                      //       ..onTap = () {
-                                      //         HapticFeedback.lightImpact();
-                                      //         // Fluttertoast.showToast(
-                                      //         //   msg:
-                                      //         //   'Forgotten password! button pressed',
-                                      //         // );
-                                      //       },
-                                      //   ),
-                                      // ),
-                                      // RichText(
-                                      //   text: TextSpan(
-                                      //     text: 'Create a new Account',
-                                      //     style: TextStyle(
-                                      //       color: Colors.white,
-                                      //     ),
-                                      //     recognizer: TapGestureRecognizer()
-                                      //       ..onTap = () {
-                                      //         HapticFeedback.lightImpact();
-                                      //         // Fluttertoast.showToast(
-                                      //         //   msg:
-                                      //         //   'Create a new Account button pressed',
-                                      //         // );
-                                      //       },
-                                      //   ),
-                                      // ),
-                                    ],
+                                    children: [],
                                   ),
                                   SizedBox(height: size.width * .3),
                                   InkWell(
@@ -166,9 +157,6 @@ class _LoginPageState extends State<LoginPage> {
                                     highlightColor: Colors.transparent,
                                     onTap: () {
                                       HapticFeedback.lightImpact();
-                                      // Fluttertoast.showToast(
-                                      //   msg: 'Sign-In button pressed',
-                                      // );
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(
@@ -181,14 +169,6 @@ class _LoginPageState extends State<LoginPage> {
                                         color: Colors.black.withOpacity(.1),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
-                                      // child: const Text(
-                                      //   'Autenticar',
-                                      //   style: TextStyle(
-                                      //     color: Colors.white,
-                                      //     fontSize: 20,
-                                      //     fontWeight: FontWeight.w600,
-                                      //   ),
-                                      // ),
                                       child: TextButton.icon(
                                         onPressed: handleOnLogin,
                                         // context.go("/products"),

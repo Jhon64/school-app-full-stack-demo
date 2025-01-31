@@ -22,7 +22,7 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
       result.message = httpResult.message;
       if (httpResult.statusCode == 200) {
         Map<String, dynamic> dataJson = httpResult.data;
-        result.data = UsuarioResponse.fromJson(dataJson);
+        result.data = UsuarioResponse.fromJson(dataJson["data"]);
       }
     } catch (ex) {
       result.statusCode = 500;

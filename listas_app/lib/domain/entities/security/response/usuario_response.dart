@@ -12,12 +12,12 @@ UsuarioResponse usuarioResponseFromJson(String str) =>
 String usuarioResponseToJson(UsuarioResponse data) =>
     json.encode(data.toJson());
 
-class UsuarioResponse extends OperacionesLocalstorage{
+class UsuarioResponse extends OperacionesLocalstorage {
   String? username;
   String? password;
   String? fullName;
   String? token;
-  DateTime? expiredAt;
+  DateTime? expiredDate;
   List<RolResponse>? roles;
 
   int? userID;
@@ -25,7 +25,7 @@ class UsuarioResponse extends OperacionesLocalstorage{
   UsuarioResponse({
     this.username,
     this.password,
-    this.expiredAt,
+    this.expiredDate,
     this.fullName,
     this.token,
     this.userID,
@@ -36,10 +36,12 @@ class UsuarioResponse extends OperacionesLocalstorage{
       UsuarioResponse(
         username: json["username"],
         password: json["password"],
-        expiredAt: json["expiredAt"]!=null?DateTime.tryParse(json["expiredAt"]):null,
+        expiredDate: json["expiredDate"] != null
+            ? DateTime.tryParse(json["expiredDate"])
+            : null,
         fullName: json["fullName"],
         token: json["token"],
-        userID: json["userID"]!=null?int.tryParse(json["userID"]):null,
+        userID: json["userID"],
         roles: json["roles"] == null
             ? []
             : List<RolResponse>.from(
@@ -51,7 +53,7 @@ class UsuarioResponse extends OperacionesLocalstorage{
         "username": username,
         "password": password,
         "fullName": fullName,
-        "expiredAt": expiredAt,
+        "expiredDate": expiredDate,
         "token": token,
         "userID": userID,
         "roles": roles == null

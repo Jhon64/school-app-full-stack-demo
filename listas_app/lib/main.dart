@@ -3,61 +3,23 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listas_app/security/provider/auth_provider.dart';
 import 'package:listas_app/settings/loadConfigureInit.dart';
-import 'package:listas_app/ui/homeScreen.dart';
-import 'package:listas_app/ui/screens/compras/compras_page.dart';
-import 'package:listas_app/ui/screens/login/login_screen.dart';
-import 'package:listas_app/ui/screens/products/product_page.dart';
+import 'package:listas_app/ui/layout/home_layout.dart';
+import 'package:listas_app/ui/router/router.dart';
+import 'package:listas_app/ui/screens/generales/compras/compras_page.dart';
+import 'package:listas_app/ui/screens/auth/login/login_screen.dart';
+import 'package:listas_app/ui/screens/generales/products/product_page.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-/// The route configuration.
-final GoRouter _router = GoRouter(
-  initialLocation: '/', // Ruta inicial
-  // initialLocation: '/products', // Ruta inicial
-  routes: <RouteBase>[
-    GoRoute(
-        path: '/login',
-        builder: (BuildContext context, GoRouterState state) {
-          return const LoginPage();
-        }),
-    GoRoute(
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        return authProvider.isAuthenticated
-            ? const HomePage()
-            : const LoginPage();
-      },
-      routes: <RouteBase>[
-        GoRoute(
-          path: 'products',
-          builder: (BuildContext context, GoRouterState state) {
-            return const ProductPage();
-          },
-        ),
-        GoRoute(
-          path: 'compras',
-          builder: (BuildContext context, GoRouterState state) {
-            return const ComprasPage();
-          },
-        ),
-      ],
-    ),
-  ],
-);
+import 'security/service/auth_service.dart';
 
 Future<void> main() async {
   loadConfigureInit();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => AuthProvider()..loadUser()),
-      ],
-      child: const AppPage(),
-    ),
+    const AppPage(),
   );
 }
 
@@ -80,7 +42,7 @@ class AppPage extends StatelessWidget {
           );
         },
         child: MaterialApp.router(
-          routerConfig: _router,
+          routerConfig: router,
           title: 'Productos page',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

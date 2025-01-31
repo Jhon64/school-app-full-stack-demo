@@ -6,8 +6,8 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:listas_app/data/service/product_service_impl.dart';
 import 'package:listas_app/domain/entities/producto_entity.dart';
 import 'package:listas_app/domain/services/product_service.dart';
-import 'package:listas_app/ui/screens/products/widgets/list_products.dart';
-import 'package:listas_app/ui/widgets/confirmation_dialog.dart';
+import 'package:listas_app/ui/screens/generales/products/widgets/list_products.dart';
+import 'package:listas_app/ui/screens/widgets/confirmation_dialog.dart';
 
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -26,7 +26,7 @@ class _ProductPageState extends State<ProductPage> {
   double _size = 1.0;
   final bool _loadingState = false;
   List<Product> _listProduct = [];
-  List<BluetoothDevice>  devices = [];
+  List<BluetoothDevice> devices = [];
   final Bluetooth _bluetooth = Bluetooth.initialize();
   final ProductService _service = ProductServiceImpl();
   late Product form = Product();
@@ -40,36 +40,40 @@ class _ProductPageState extends State<ProductPage> {
 
     // initializeForm(null);
   }
+
   void _connectToDevice(BluetoothDevice device) async {
-    try{
-    await device.connect();
-    Toasted.success(message:"✅ Conectado a ${device.name} (${device.remoteId})").show();
-
-    }catch(e){
-    Toasted.error(message:"✅ Error al conectar con este dispoitivo ${e.toString()}").show();
-
+    try {
+      await device.connect();
+      Toasted.success(
+              message: "✅ Conectado a ${device.name} (${device.remoteId})")
+          .show();
+    } catch (e) {
+      Toasted.error(
+              message:
+                  "✅ Error al conectar con este dispoitivo ${e.toString()}")
+          .show();
     }
   }
 
   void initConfigBluetooth() async {
     setState(() {
-      devices=[];
+      devices = [];
     });
     bool? permiso = await _bluetooth.requestPermissions();
-    if (permiso== true) {
+    if (permiso == true) {
       Toasted.info(message: "Bluetooth conectado").show();
       _bluetooth.startScan(null);
-      _bluetooth.getScanResultsSubscription().listen((scanResults){
+      _bluetooth.getScanResultsSubscription().listen((scanResults) {
         for (ScanResult r in scanResults) {
           if (!devices.contains(r.device)) {
-            log("dispositivo: ${r.device.advName}" );
+            log("dispositivo: ${r.device.advName}");
             setState(() {
               devices.add(r.device);
             });
           }
         }
       });
-      _bluetooth.getIsScanningSubscription().listen((state){
+      _bluetooth.getIsScanningSubscription().listen((state) {
         log('el estado del scanneo ${state.toString()}');
       });
       // var devices = _bluetooth.getDevices();
@@ -297,7 +301,8 @@ class _ProductPageState extends State<ProductPage> {
           ),
           const SizedBox(height: 2),
           // Expanded(child: loadListViewProducts())
-          Expanded(child: ListView.builder(
+          Expanded(
+              child: ListView.builder(
             itemCount: devices.length,
             itemBuilder: (context, index) {
               return ListTile(

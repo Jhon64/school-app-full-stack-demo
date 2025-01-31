@@ -50,7 +50,7 @@ class Http2 {
 // Obtain shared preferences.
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? apiBaseURL = prefs.getString('api_baseURL');
-    final dynamic userLogin = prefs.getString('user');
+    final dynamic userLogin = prefs.getString('userLogin');
     final String? token = prefs.getString('token');
     Map<String, String?> dataStorage = {
       'apiBaseURL': apiBaseURL,
@@ -233,7 +233,7 @@ class Http2 {
     urlCompleta = '$urlCompleta$url';
     var dataUser = localStorage['userLogin'];
     UserResult? userResult;
-    if (dataUser != null) {
+    if (dataUser?.userID != null) {
       var parseData = jsonDecode(dataUser);
       userResult = UserResult.fromJson(parseData["data"]);
     }
